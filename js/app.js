@@ -15,11 +15,19 @@ document.getElementById("calculate-btn").addEventListener("click", function () {
   const rentField = getNumberOf("rent");
   const clothField = getNumberOf("clothes");
   const incomeField = getNumberOf("income");
-  if (foodField > 0 || rentField > 0 || clothField > 0 || incomeField > 0) {
+  if (foodField > 0 && rentField > 0 && clothField > 0 && incomeField > 0) {
     const total = foodField + rentField + clothField;
     const totalBalance = incomeField - total;
     setTotalExpenses("total-expense", total);
     setTotalExpenses("balance", totalBalance);
+    if (incomeField < total) {
+      alert(
+        "your Expenses is greater than your income brother. limit your expenses."
+      );
+      setTotalExpenses("total-expense", "");
+      setTotalExpenses("balance", "");
+      return warning;
+    }
   } else {
     alert("please, type income, food, rent, cloth");
   }
